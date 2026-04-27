@@ -21,35 +21,28 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
-  
   header { background: #fff; border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
   header .logo { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
   header .subtitle { color: var(--muted); font-size: 13px; }
   header .badge { margin-left: auto; background: var(--primary-light); color: var(--primary); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
-  
-  .nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; gap: 0; }
-  .nav-btn { padding: 14px 20px; border: none; background: none; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.15s; }
+  .nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; gap: 0; overflow-x: auto; }
+  .nav-btn { padding: 14px 20px; border: none; background: none; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; }
   .nav-btn:hover { color: var(--text); }
   .nav-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-  
   .container { padding: 28px 32px; max-width: 1300px; margin: 0 auto; }
-  
   .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
   .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
   .metric-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
   .metric-card .value { font-size: 26px; font-weight: 700; color: var(--text); }
   .metric-card .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
   .metric-card .up { color: var(--green); } .metric-card .down { color: var(--red); }
-  
   .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
   .chart-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
   .chart-card .desc { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
   .chart-wrap { position: relative; height: 320px; }
-  
   .tab-content { display: none; }
   .tab-content.active { display: block; }
-  
-  /* Keywords tab */
+  .note-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 12px 16px; font-size: 12px; color: #92400e; margin-bottom: 20px; }
   .kw-toolbar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
   .kw-toolbar input, .kw-toolbar select { padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: #fff; color: var(--text); outline: none; }
   .kw-toolbar input { flex: 1; min-width: 200px; }
@@ -61,7 +54,6 @@
   .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
   .btn-green { background: #16a34a; color: #fff; }
   .btn-green:hover { background: #15803d; }
-  
   .pages-grid { display: flex; flex-direction: column; gap: 12px; }
   .page-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   .page-header { padding: 14px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
@@ -72,7 +64,6 @@
   .page-card.open .page-chevron { transform: rotate(180deg); }
   .page-body { display: none; border-top: 1px solid var(--border); }
   .page-card.open .page-body { display: block; }
-  
   .kw-table { width: 100%; border-collapse: collapse; font-size: 12px; }
   .kw-table th { padding: 8px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); background: #f8fafc; border-bottom: 1px solid var(--border); font-weight: 600; }
   .kw-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
@@ -84,20 +75,13 @@
   .vol-bar { display: inline-block; height: 6px; background: var(--primary); border-radius: 3px; opacity: 0.6; vertical-align: middle; margin-right: 6px; }
   .peak-badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; background: #fef3c7; color: #92400e; }
   .low-badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; background: #fee2e2; color: #991b1b; }
-  
   .months-mini { display: flex; gap: 2px; align-items: center; }
   .month-cell { width: 18px; height: 18px; border-radius: 3px; font-size: 8px; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; }
-  
-  .export-bar { display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--border); background: #f8fafc; }
-  .kw-count { font-size: 12px; color: var(--muted); margin-left: auto; align-self: center; }
-  
-  .summary-row { padding: 10px 18px; background: #f8fafc; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); }
-  
   @media (max-width: 768px) {
     .metrics { grid-template-columns: repeat(2, 1fr); }
     .container { padding: 16px; }
-    header { padding: 16px; }
-    .nav { padding: 0 16px; overflow-x: auto; }
+    header { padding: 16px; flex-wrap: wrap; }
+    .nav { padding: 0 16px; }
   }
 </style>
 </head>
@@ -112,13 +96,13 @@
 </header>
 
 <nav class="nav">
-  <button class="nav-btn active" onclick="showTab('charts')">📈 Saisonalität & Prognose</button>
-  <button class="nav-btn" onclick="showTab('keywords')">🔑 Keywords & Export</button>
+  <button class="nav-btn active" onclick="showTab('charts', this)">📈 Saisonalität & Prognose</button>
+  <button class="nav-btn" onclick="showTab('history', this)">📅 Jahresvergleich 2023–2026</button>
+  <button class="nav-btn" onclick="showTab('keywords', this)">🔑 Keywords & Export</button>
 </nav>
 
 <div class="container">
 
-  <!-- METRICS -->
   <div class="metrics">
     <div class="metric-card">
       <div class="label">Jahres-Suchvolumen 2026</div>
@@ -142,32 +126,49 @@
     </div>
   </div>
 
-  <!-- CHARTS TAB -->
+  <!-- TAB: CHARTS -->
   <div id="tab-charts" class="tab-content active">
-    
     <div class="chart-card">
       <h3>Monatliches Suchvolumen (absolut) – Prognose 2026</h3>
       <div class="desc">Aggregiertes Suchvolumen aller 210 Keywords · gestrichelt = Jahresdurchschnitt (133.510)</div>
       <div class="chart-wrap"><canvas id="chartAbsolut"></canvas></div>
     </div>
-    
     <div class="chart-card">
       <h3>Saisonaler Index (% vs. Jahres-Ø)</h3>
       <div class="desc">Grün = überdurchschnittliche Nachfrage · Rot = unterdurchschnittliche Nachfrage</div>
       <div class="chart-wrap"><canvas id="chartIndex"></canvas></div>
     </div>
-    
     <div class="chart-card">
       <h3>Kategorien-Vergleich – Saisonaler Index</h3>
       <div class="desc">Saisonaler Index nach Seiten-Kategorie · 1.0 = Jahresdurchschnitt</div>
       <div class="chart-wrap"><canvas id="chartKategorien"></canvas></div>
     </div>
-
   </div>
 
-  <!-- KEYWORDS TAB -->
+  <!-- TAB: HISTORY -->
+  <div id="tab-history" class="tab-content">
+    <div class="note-box">
+      📊 Basis: Google Trends-Daten für 202 Keywords (2023–2025), skaliert auf Ahrefs-Basisvolumen. Die Absolutwerte sind Schätzungen — sie zeigen das saisonale Muster, nicht exakte Suchvolumina.
+    </div>
+    <div class="chart-card">
+      <h3>Suchvolumen-Vergleich: 2023 vs. 2024 vs. 2025 vs. Prognose 2026</h3>
+      <div class="desc">Monatliche Suchanfragen im Jahresvergleich (absolut, Hochrechnung auf Ahrefs-Basis)</div>
+      <div class="chart-wrap" style="height:360px"><canvas id="chartHistAbs"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Saisonaler Index im Jahresvergleich</h3>
+      <div class="desc">1.0 = Jahresdurchschnitt · zeigt das relative Muster pro Jahr unabhängig vom absoluten Niveau</div>
+      <div class="chart-wrap" style="height:340px"><canvas id="chartHistIdx"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Jahres-Übersicht: Stärkstes & schwächstes Quartal</h3>
+      <div class="desc">Quartalsvergleich: Q1 (Jan–Mär), Q2 (Apr–Jun), Q3 (Jul–Sep), Q4 (Okt–Dez)</div>
+      <div class="chart-wrap" style="height:300px"><canvas id="chartQuartal"></canvas></div>
+    </div>
+  </div>
+
+  <!-- TAB: KEYWORDS -->
   <div id="tab-keywords" class="tab-content">
-    
     <div class="kw-toolbar">
       <input type="text" id="kwSearch" placeholder="Keyword suchen…" oninput="renderKeywords()">
       <select id="kwFilter" onchange="renderKeywords()">
@@ -181,9 +182,7 @@
       <button class="btn btn-green" onclick="exportCSV()">⬇ CSV exportieren</button>
       <button class="btn btn-outline" onclick="exportForecastCSV()">⬇ Prognose-CSV</button>
     </div>
-    
     <div id="kwContainer" class="pages-grid"></div>
-
   </div>
 
 </div>
@@ -191,153 +190,147 @@
 <script>
 const CHART_DATA = {"months": ["Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"], "monthly_total": [166994, 160929, 148775, 127642, 114606, 101350, 95142, 112100, 136243, 146526, 156052, 137770], "global_idx": [1.256, 1.231, 1.128, 0.979, 0.823, 0.726, 0.66, 0.811, 1.029, 1.124, 1.181, 1.052], "pct_vs_avg": [25.6, 23.1, 12.8, -2.1, -17.7, -27.4, -34.0, -18.9, 2.9, 12.4, 18.1, 5.2], "categories": {"Homepage / Allgemein": [0.799, 1.493, 0.967, 0.926, 0.604, 0.561, 0.634, 1.048, 1.517, 1.337, 1.11, 1.005], "Sujet-Seiten": [1.35, 1.204, 1.249, 0.914, 0.806, 0.752, 0.625, 0.724, 0.982, 1.16, 1.23, 1.004], "Technik-Seiten": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "Sonstige": [1.109, 1.372, 0.943, 1.108, 0.756, 0.583, 0.593, 0.924, 1.186, 1.14, 1.12, 1.166]}, "annual_avg": 133677};
 const PAGES = [{"url": "https://studenten-kunstmarkt.de/", "label": "Homepage", "focus": [{"keyword": "kunst kaufen", "volume": 2400, "idx": [1.103, 1.036, 0.991, 0.929, 0.9, 0.79, 0.925, 0.964, 0.931, 1.063, 1.15, 1.219], "forecast": [2647, 2486, 2378, 2230, 2160, 1896, 2220, 2314, 2234, 2551, 2760, 2926], "peak": "Dez", "low": "Jun", "source": "Google Trends"}, {"keyword": "gem\u00e4lde kaufen", "volume": 2700, "idx": [1.217, 1.059, 1.051, 0.977, 0.871, 0.717, 0.868, 0.966, 0.919, 1.082, 1.079, 1.194], "forecast": [3286, 2859, 2838, 2638, 2352, 1936, 2344, 2608, 2481, 2921, 2913, 3224], "peak": "Jan", "low": "Jun", "source": "Google Trends"}, {"keyword": "kunst online kaufen", "volume": 900, "idx": [1.047, 1.199, 1.148, 0.0, 0.0, 0.0, 1.236, 1.323, 2.617, 0.0, 1.817, 1.614], "forecast": [942, 1079, 1033, 0, 0, 0, 1112, 1191, 2355, 0, 1635, 1453], "peak": "Sep", "low": "Apr", "source": "Google Trends"}, {"keyword": "online galerie", "volume": 500, "idx": [0.979, 1.046, 0.88, 0.921, 0.877, 0.857, 0.947, 1.064, 0.868, 1.1, 1.258, 1.203], "forecast": [490, 523, 440, 460, 438, 428, 474, 532, 434, 550, 629, 602], "peak": "Nov", "low": "Jun", "source": "Google Trends"}, {"keyword": "kunst von kunststudenten kaufen", "volume": 300, "idx": [0.0, 5.976, 0.0, 0.0, 0.0, 0.0, 0.0, 6.024, 0.0, 0.0, 0.0, 0.0], "forecast": [0, 1793, 0, 0, 0, 0, 0, 1807, 0, 0, 0, 0], "peak": "Aug", "low": "Jan", "source": "Google Trends"}, {"keyword": "bilder von kunststudenten kaufen", "volume": 90, "idx": [1.106, 1.085, 1.016, 0.951, 0.893, 0.831, 0.84, 0.964, 1.031, 1.06, 1.153, 1.069], "forecast": [100, 98, 91, 86, 80, 75, 76, 87, 93, 95, 104, 96], "peak": "Nov", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "kunst online kaufen junge k\u00fcnstler", "volume": 60, "idx": [0.0, 6.849, 0.0, 5.151, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "forecast": [0, 411, 0, 309, 0, 0, 0, 0, 0, 0, 0, 0], "peak": "Feb", "low": "Jan", "source": "Google Trends"}, {"keyword": "junge kunst kaufen", "volume": 60, "idx": [1.106, 1.085, 1.016, 0.951, 0.893, 0.831, 0.84, 0.964, 1.031, 1.06, 1.153, 1.069], "forecast": [66, 65, 61, 57, 54, 50, 50, 58, 62, 64, 69, 64], "peak": "Nov", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "kunst bilder", "volume": 3700, "idx": [1.218, 1.125, 1.064, 0.971, 0.909, 0.864, 0.759, 0.863, 1.007, 1.018, 1.186, 1.016], "forecast": [4507, 4162, 3937, 3593, 3363, 3197, 2808, 3193, 3726, 3767, 4388, 3759], "peak": "Jan", "low": "Jul", "source": "Google Trends"}, {"keyword": "Kunst", "volume": 1700, "idx": [1.128, 1.1, 1.027, 0.979, 0.966, 0.877, 0.777, 0.872, 1.071, 1.054, 1.188, 0.961], "forecast": [1918, 1870, 1746, 1664, 1642, 1491, 1321, 1482, 1821, 1792, 2020, 1634], "peak": "Nov", "low": "Jul", "source": "Google Trends"}, {"keyword": "Gem\u00e4lde", "volume": 1200, "idx": [1.07, 1.042, 0.989, 1.048, 0.938, 0.81, 0.823, 0.88, 0.993, 1.053, 1.237, 1.118], "forecast": [1284, 1250, 1187, 1258, 1126, 972, 988, 1056, 1192, 1264, 1484, 1342], "peak": "Nov", "low": "Jun", "source": "Google Trends"}, {"keyword": "Kunstgalerie", "volume": 1200, "idx": [1.097, 1.118, 1.104, 0.973, 0.878, 0.899, 0.878, 1.05, 0.997, 1.017, 1.061, 0.927], "forecast": [1316, 1342, 1325, 1168, 1054, 1079, 1054, 1260, 1196, 1220, 1273, 1112], "peak": "Feb", "low": "Mai", "source": "Google Trends"}, {"keyword": "kunstwerke", "volume": 4800, "idx": [1.108, 0.985, 0.975, 0.913, 0.955, 0.952, 0.835, 1.009, 1.143, 1.065, 1.082, 0.979], "forecast": [5318, 4728, 4680, 4382, 4584, 4570, 4008, 4843, 5486, 5112, 5194, 4699], "peak": "Sep", "low": "Jul", "source": "Google Trends"}, {"keyword": "gem\u00e4lde online kaufen", "volume": 200, "idx": [1.106, 1.085, 1.016, 0.951, 0.893, 0.831, 0.84, 0.964, 1.031, 1.06, 1.153, 1.069], "forecast": [221, 217, 203, 190, 179, 166, 168, 193, 206, 212, 231, 214], "peak": "Nov", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "gem\u00e4lde kaufen original", "volume": 150, "idx": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6.316, 5.684, 0.0, 0.0], "forecast": [0, 0, 0, 0, 0, 0, 0, 0, 947, 853, 0, 0], "peak": "Sep", "low": "Jan", "source": "Google Trends"}, {"keyword": "original gem\u00e4lde kaufen", "volume": 150, "idx": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6.316, 5.684, 0.0, 0.0], "forecast": [0, 0, 0, 0, 0, 0, 0, 0, 947, 853, 0, 0], "peak": "Sep", "low": "Jan", "source": "Google Trends"}, {"keyword": "gem\u00e4lde kaufen g\u00fcnstig", "volume": 150, "idx": [1.106, 1.085, 1.016, 0.951, 0.893, 0.831, 0.84, 0.964, 1.031, 1.06, 1.153, 1.069], "forecast": [166, 163, 152, 143, 134, 125, 126, 145, 155, 159, 173, 160], "peak": "Nov", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "kunst gem\u00e4lde kaufen", "volume": 100, "idx": [0.0, 0.0, 4.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.315, 3.575], "forecast": [0, 0, 411, 0, 0, 0, 0, 0, 0, 0, 432, 358], "peak": "Nov", "low": "Jan", "source": "Google Trends"}], "secondary": [{"keyword": "kunstwerke von frida kahlo", "volume": 7100}, {"keyword": "kunstwerke von pablo picasso", "volume": 5300}, {"keyword": "kunstwerke von banksy", "volume": 4000}, {"keyword": "kunstwerke von leonardo da vinci", "volume": 3200}, {"keyword": "kunstwerke von salvador dal\u00ed", "volume": 3000}]}, {"url": "https://studenten-kunstmarkt.de/absolventen/", "label": "absolventen", "focus": [{"keyword": "malereien", "volume": 150, "idx": [1.621, 1.646, 0.358, 2.078, 0.801, 0.0, 0.0, 0.817, 0.838, 0.764, 1.011, 2.065], "forecast": [243, 247, 54, 312, 120, 0, 0, 123, 126, 115, 152, 310], "peak": "Apr", "low": "Jun", "source": "Google Trends"}, {"keyword": "in kunst investieren", "volume": 100, "idx": [1.621, 1.646, 0.358, 2.078, 0.801, 0.0, 0.0, 0.817, 0.838, 0.764, 1.011, 2.065], "forecast": [162, 165, 36, 208, 80, 0, 0, 82, 84, 76, 101, 206], "peak": "Apr", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "kunst als wertanlage", "volume": 100, "idx": [1.621, 1.646, 0.358, 2.078, 0.801, 0.0, 0.0, 0.817, 0.838, 0.764, 1.011, 2.065], "forecast": [162, 165, 36, 208, 80, 0, 0, 82, 84, 76, 101, 206], "peak": "Apr", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "kunst als geldanlage", "volume": 150, "idx": [1.621, 1.646, 0.358, 2.078, 0.801, 0.0, 0.0, 0.817, 0.838, 0.764, 1.011, 2.065], "forecast": [243, 247, 54, 312, 120, 0, 0, 123, 126, 115, 152, 310], "peak": "Apr", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "kunst als investment", "volume": 30, "idx": [1.621, 1.646, 0.358, 2.078, 0.801, 0.0, 0.0, 0.817, 0.838, 0.764, 1.011, 2.065], "forecast": [49, 49, 11, 62, 24, 0, 0, 25, 25, 23, 30, 62], "peak": "Apr", "low": "Jun", "source": "Seiten-\u00d8"}, {"keyword": "malereien kaufen", "volume": 40, "idx": [1.621, 1.646, 0.358, 2.078, 0.801, 0.0, 0.0, 0.817, 0.838, 0.764, 1.011, 2.065], "forecast": [65, 66, 14, 83, 32, 0, 0, 33, 34, 31, 40, 83], "peak": "Apr", "low": "Jun", "source": "Seiten-\u00d8"}], "secondary": [{"keyword": "malereien kaufen", "volume": 40}, {"keyword": "\u00e4gyptische malereien", "volume": 40}, {"keyword": "hitler malereien", "volume": 30}, {"keyword": "bekannte malereien", "volume": 30}]}, {"url": "https://studenten-kunstmarkt.de/kunstwerke/stillleben/", "label": "kunstwerke/stillleben", "focus": [], "secondary": [{"keyword": "stillleben kunst modern", "volume": 80}, {"keyword": "kunst stillleben", "volume": 80}, {"keyword": "stillleben kunst einfach", "volume": 60}, {"keyword": "stillleben moderne kunst", "volume": 40}, {"keyword": "stillleben kunst zeichnen", "volume": 40}]}, {"url": "https://studenten-kunstmarkt.de/studierende/edition-einzigartigkeit/unikat/", "label": "studierende/edition-einzigartigkeit/unikat", "focus": [{"keyword": "handgemalte bilder unikate", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "originalgem\u00e4lde", "volume": 50, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [62, 59, 55, 49, 44, 39, 37, 42, 50, 54, 58, 52], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "unikate", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "original kunst kaufen", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "unikate kaufen", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "unikate jena", "volume": 150}, {"keyword": "unikate kaufen", "volume": 100}, {"keyword": "unikate drechseln", "volume": 100}, {"keyword": "designer silberschmuck unikate", "volume": 90}, {"keyword": "eheringe unikate", "volume": 80}]}, {"url": "https://studenten-kunstmarkt.de/studierende/format-groesse/gross-100-200-cm/", "label": "studierende/format-groesse/gross-100-200-cm", "focus": [{"keyword": "gro\u00dfe bilder", "volume": 1000, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1234, 1181, 1097, 980, 879, 778, 735, 845, 993, 1075, 1161, 1042], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfe wandbilder", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "xxl bilder", "volume": 700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [864, 827, 768, 686, 615, 545, 514, 592, 695, 752, 813, 729], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "hochwertige wandbilder xxl", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfes wandbild", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfe kunstwerke", "volume": 40, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [49, 47, 44, 39, 35, 31, 29, 34, 40, 43, 46, 42], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfes gem\u00e4lde", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfe bilder wohnzimmer", "volume": 500, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [617, 590, 548, 490, 440, 389, 368, 422, 496, 538, 580, 521], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfe bilder f\u00fcrs wohnzimmer", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gro\u00dfe bilder wohnzimmer abstrakt", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "gro\u00dfe bilder f\u00fcrs wohnzimmer modern", "volume": 800}, {"keyword": "gro\u00dfe meerjungfrau kopenhagen bilder", "volume": 600}, {"keyword": "gro\u00dfe bilder wohnzimmer", "volume": 500}, {"keyword": "gro\u00dfe bilder wohnzimmer abstrakt", "volume": 350}, {"keyword": "gro\u00dfe bilder f\u00fcrs wohnzimmer", "volume": 350}]}, {"url": "https://studenten-kunstmarkt.de/studierende/preis/unter-500/", "label": "studierende/preis/unter-500", "focus": [{"keyword": "bezahlbare kunst online", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst g\u00fcnstig", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "g\u00fcnstige kunst", "volume": 60, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [74, 71, 66, 59, 53, 47, 44, 51, 60, 64, 70, 63], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst g\u00fcnstig kaufen", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/abstrakt/", "label": "studierende/sujet/abstrakt", "focus": [], "secondary": [{"keyword": "abstrakte malerei acryl", "volume": 250}, {"keyword": "abstrakte malerei k\u00fcnstler", "volume": 100}, {"keyword": "malerei abstrakte kunst", "volume": 90}, {"keyword": "abstrakte malerei bilder", "volume": 90}, {"keyword": "abstrakte kunst malerei", "volume": 80}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/abstrakte-gemaelde/", "label": "studierende/sujet/abstrakte-gemaelde", "focus": [{"keyword": "abstrakte kunst", "volume": 1700, "idx": [1.271, 1.222, 1.086, 0.941, 0.881, 0.902, 0.786, 0.851, 0.875, 1.04, 1.119, 1.024], "forecast": [2161, 2077, 1846, 1600, 1498, 1533, 1336, 1447, 1488, 1768, 1902, 1741], "peak": "Jan", "low": "Jul", "source": "Google Trends"}, {"keyword": "abstrakte malerei", "volume": 2700, "idx": [1.817, 1.532, 1.258, 0.487, 0.826, 0.228, 0.524, 1.314, 1.462, 1.128, 0.548, 0.875], "forecast": [4906, 4136, 3397, 1315, 2230, 616, 1415, 3548, 3947, 3046, 1480, 2362], "peak": "Jan", "low": "Jun", "source": "Google Trends"}, {"keyword": "abstrakte gem\u00e4lde", "volume": 500, "idx": [1.389, 1.29, 1.124, 0.842, 0.869, 0.755, 0.729, 0.952, 1.003, 1.059, 0.995, 0.992], "forecast": [694, 645, 562, 421, 434, 378, 364, 476, 501, 530, 498, 496], "peak": "Jan", "low": "Jul", "source": "Seiten-\u00d8"}, {"keyword": "abstrakte gem\u00e4lde kaufen", "volume": 50, "idx": [1.389, 1.29, 1.124, 0.842, 0.869, 0.755, 0.729, 0.952, 1.003, 1.059, 0.995, 0.992], "forecast": [69, 64, 56, 42, 43, 38, 36, 48, 50, 53, 50, 50], "peak": "Jan", "low": "Jul", "source": "Seiten-\u00d8"}, {"keyword": "abstrakte malerei acryl", "volume": 250, "idx": [1.389, 1.29, 1.124, 0.842, 0.869, 0.755, 0.729, 0.952, 1.003, 1.059, 0.995, 0.992], "forecast": [347, 322, 281, 210, 217, 189, 182, 238, 251, 265, 249, 248], "peak": "Jan", "low": "Jul", "source": "Seiten-\u00d8"}, {"keyword": "malerei abstrakte kunst", "volume": 90, "idx": [1.389, 1.29, 1.124, 0.842, 0.869, 0.755, 0.729, 0.952, 1.003, 1.059, 0.995, 0.992], "forecast": [125, 116, 101, 76, 78, 68, 66, 86, 90, 95, 90, 89], "peak": "Jan", "low": "Jul", "source": "Seiten-\u00d8"}, {"keyword": "abstrakte malerei bilder", "volume": 90, "idx": [1.389, 1.29, 1.124, 0.842, 0.869, 0.755, 0.729, 0.952, 1.003, 1.059, 0.995, 0.992], "forecast": [125, 116, 101, 76, 78, 68, 66, 86, 90, 95, 90, 89], "peak": "Jan", "low": "Jul", "source": "Seiten-\u00d8"}, {"keyword": "abstrakte kunst malerei", "volume": 80, "idx": [1.389, 1.29, 1.124, 0.842, 0.869, 0.755, 0.729, 0.952, 1.003, 1.059, 0.995, 0.992], "forecast": [111, 103, 90, 67, 70, 60, 58, 76, 80, 85, 80, 79], "peak": "Jan", "low": "Jul", "source": "Seiten-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/akt/", "label": "studierende/sujet/akt", "focus": [], "secondary": [{"keyword": "aktmalerei kurs", "volume": 200}, {"keyword": "aktmalerei modell", "volume": 200}, {"keyword": "aktmalerei k\u00fcnstler", "volume": 100}, {"keyword": "aktmalerei abstrakt", "volume": 80}, {"keyword": "aktmalerei bleistift", "volume": 70}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/aktgemaelde/", "label": "studierende/sujet/aktgemaelde", "focus": [{"keyword": "aktgem\u00e4lde", "volume": 350, "idx": [1.313, 1.149, 1.262, 0.0, 0.0, 1.262, 0.0, 0.0, 1.565, 2.878, 2.569, 0.0], "forecast": [460, 402, 442, 0, 0, 442, 0, 0, 548, 1007, 899, 0], "peak": "Okt", "low": "Apr", "source": "Seiten-\u00d8"}, {"keyword": "aktmalerei", "volume": 800, "idx": [0.0, 1.754, 0.0, 0.0, 0.0, 1.928, 0.0, 0.0, 2.39, 2.005, 3.923, 0.0], "forecast": [0, 1403, 0, 0, 0, 1542, 0, 0, 1912, 1604, 3138, 0], "peak": "Nov", "low": "Jan", "source": "Google Trends"}, {"keyword": "akt malerei", "volume": 450, "idx": [3.805, 0.0, 3.659, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.537, 0.0, 0.0], "forecast": [1712, 0, 1647, 0, 0, 0, 0, 0, 0, 2042, 0, 0], "peak": "Okt", "low": "Feb", "source": "Google Trends"}, {"keyword": "aktmalerei abstrakt", "volume": 80, "idx": [1.313, 1.149, 1.262, 0.0, 0.0, 1.262, 0.0, 0.0, 1.565, 2.878, 2.569, 0.0], "forecast": [105, 92, 101, 0, 0, 101, 0, 0, 125, 230, 206, 0], "peak": "Okt", "low": "Apr", "source": "Seiten-\u00d8"}, {"keyword": "akt gem\u00e4lde kaufen", "volume": 70, "idx": [1.313, 1.149, 1.262, 0.0, 0.0, 1.262, 0.0, 0.0, 1.565, 2.878, 2.569, 0.0], "forecast": [92, 80, 88, 0, 0, 88, 0, 0, 110, 201, 180, 0], "peak": "Okt", "low": "Apr", "source": "Seiten-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/blumen-gemaelde/", "label": "studierende/sujet/blumen-gemaelde", "focus": [{"keyword": "blumengem\u00e4lde", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "blumen malerei", "volume": 40, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [49, 47, 44, 39, 35, 31, 29, 34, 40, 43, 46, 42], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gem\u00e4lde mit blumen", "volume": 50, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [62, 59, 55, 49, 44, 39, 37, 42, 50, 54, 58, 52], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "blumen gemalt", "volume": 1000, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1234, 1181, 1097, 980, 879, 778, 735, 845, 993, 1075, 1161, 1042], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst mit blumen", "volume": 20, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [25, 24, 22, 20, 18, 16, 15, 17, 20, 22, 23, 21], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "blumen abstrakt gemalt", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "blumen bilder gemalt", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "blumen gemalt acryl", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "blumen abstrakt gemalt", "volume": 200}, {"keyword": "blumen bilder gemalt", "volume": 150}, {"keyword": "blumen gemalt einfach", "volume": 150}, {"keyword": "bilder blumen gemalt", "volume": 150}, {"keyword": "blumen gemalt acryl", "volume": 100}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/erotische-kunst/", "label": "studierende/sujet/erotische-kunst", "focus": [{"keyword": "erotische kunst", "volume": 900, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1111, 1063, 987, 882, 791, 700, 662, 760, 894, 968, 1045, 938], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "erotische malerei", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "erotik art", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "erotische gem\u00e4lde", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "erotic art", "volume": 1200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1481, 1417, 1316, 1176, 1055, 934, 882, 1014, 1192, 1290, 1393, 1250], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "erotic nude art", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "erotic art museum hamburg", "volume": 200}, {"keyword": "erotic art museum", "volume": 150}, {"keyword": "erotic 3d art", "volume": 100}, {"keyword": "erotic nude art", "volume": 100}, {"keyword": "gay erotic art", "volume": 90}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/gemaelde-meer-wasser/", "label": "studierende/sujet/gemaelde-meer-wasser", "focus": [{"keyword": "gem\u00e4lde vom meer", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "wasser gem\u00e4lde", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gem\u00e4lde meer", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "bilder meer", "volume": 700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [864, 827, 768, 686, 615, 545, 514, 592, 695, 752, 813, 729], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "meer bilder", "volume": 1700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [2098, 2008, 1865, 1666, 1494, 1323, 1250, 1436, 1688, 1828, 1974, 1771], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "strand meer bilder", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "bilder vom meer", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "bilder strand und meer", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "strand meer bilder", "volume": 300}, {"keyword": "bilder vom meer", "volume": 250}, {"keyword": "bilder strand und meer", "volume": 200}, {"keyword": "bilder meer strand kostenlos", "volume": 200}, {"keyword": "plastik im meer tiere bilder", "volume": 150}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/impressionismus/", "label": "studierende/sujet/impressionismus", "focus": [{"keyword": "impressionistische bilder", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "impressionistische gem\u00e4lde", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "impressionistische kunst", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "impressionistische bilder monet", "volume": 30}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/karikaturen/", "label": "studierende/sujet/karikaturen", "focus": [{"keyword": "karikatur", "volume": 11000, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [13574, 12991, 12067, 10780, 9669, 8558, 8085, 9295, 10923, 11825, 12771, 11462], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "karikatur kaufen", "volume": 10, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [12, 12, 11, 10, 9, 8, 7, 8, 10, 11, 12, 10], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "putin karikatur", "volume": 4700}, {"keyword": "karikatur analyse", "volume": 1500}, {"keyword": "trump karikatur", "volume": 1300}, {"keyword": "karikatur englisch", "volume": 1100}, {"keyword": "charlie hebdo karikatur", "volume": 900}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/konzeptkunst-zeitgenoessisch/", "label": "studierende/sujet/konzeptkunst-zeitgenoessisch", "focus": [], "secondary": [{"keyword": "galerie f\u00fcr zeitgen\u00f6ssische kunst", "volume": 350}, {"keyword": "zeitgen\u00f6ssische kunst k\u00fcnstler", "volume": 250}, {"keyword": "zeitgen\u00f6ssische kunst kaufen", "volume": 150}, {"keyword": "was ist zeitgen\u00f6ssische kunst", "volume": 100}, {"keyword": "galerie f\u00fcr zeitgen\u00f6ssische kunst leipzig", "volume": 90}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/landschaft/", "label": "studierende/sujet/landschaft", "focus": [], "secondary": [{"keyword": "landschaftsmalerei k\u00fcnstler", "volume": 200}, {"keyword": "landschaftsmalerei caspar david friedrich", "volume": 150}, {"keyword": "landschaftsmalerei romantik", "volume": 150}, {"keyword": "abstrakte landschaftsmalerei", "volume": 150}, {"keyword": "moderne landschaftsmalerei", "volume": 100}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/landschaftsgemaelde/", "label": "studierende/sujet/landschaftsgemaelde", "focus": [{"keyword": "landschaftsmalerei", "volume": 1900, "idx": [1.97, 1.939, 1.385, 1.3, 0.772, 0.338, 0.172, 0.148, 0.833, 1.035, 1.113, 0.996], "forecast": [3743, 3684, 2632, 2470, 1467, 642, 327, 281, 1583, 1966, 2115, 1892], "peak": "Jan", "low": "Aug", "source": "Google Trends"}, {"keyword": "landschaftsgem\u00e4lde", "volume": 600, "idx": [1.97, 1.939, 1.385, 1.3, 0.772, 0.338, 0.172, 0.148, 0.833, 1.035, 1.113, 0.996], "forecast": [1182, 1163, 831, 780, 463, 203, 103, 89, 500, 621, 668, 598], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}, {"keyword": "abstrakte landschaftsmalerei", "volume": 150, "idx": [1.97, 1.939, 1.385, 1.3, 0.772, 0.338, 0.172, 0.148, 0.833, 1.035, 1.113, 0.996], "forecast": [296, 291, 208, 195, 116, 51, 26, 22, 125, 155, 167, 149], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}, {"keyword": "moderne landschaftsmalerei", "volume": 100, "idx": [1.97, 1.939, 1.385, 1.3, 0.772, 0.338, 0.172, 0.148, 0.833, 1.035, 1.113, 0.996], "forecast": [197, 194, 138, 130, 77, 34, 17, 15, 83, 103, 111, 100], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/pop-art-gemaelde/", "label": "studierende/sujet/pop-art-gemaelde", "focus": [{"keyword": "pop art bilder", "volume": 4800, "idx": [1.29, 1.36, 1.413, 1.037, 0.884, 0.688, 0.582, 0.461, 0.83, 1.196, 1.321, 0.936], "forecast": [6192, 6528, 6782, 4978, 4243, 3302, 2794, 2213, 3984, 5741, 6341, 4493], "peak": "M\u00e4r", "low": "Aug", "source": "Google Trends"}, {"keyword": "Pop Art Kunst", "volume": 100, "idx": [2.644, 1.297, 0.807, 1.652, 1.185, 1.009, 0.0, 0.319, 1.107, 0.706, 0.711, 0.563], "forecast": [264, 130, 81, 165, 118, 101, 0, 32, 111, 71, 71, 56], "peak": "Jan", "low": "Jul", "source": "Google Trends"}, {"keyword": "pop art gem\u00e4lde", "volume": 200, "idx": [1.485, 1.316, 1.433, 1.083, 0.896, 0.708, 0.497, 0.432, 0.841, 1.105, 1.281, 0.923], "forecast": [297, 263, 287, 217, 179, 142, 99, 86, 168, 221, 256, 185], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}, {"keyword": "pop art kaufen", "volume": 100, "idx": [3.94, 0.0, 4.071, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.989, 0.0], "forecast": [394, 0, 407, 0, 0, 0, 0, 0, 0, 0, 399, 0], "peak": "M\u00e4r", "low": "Feb", "source": "Google Trends"}, {"keyword": "wandbilder pop art", "volume": 90, "idx": [1.485, 1.316, 1.433, 1.083, 0.896, 0.708, 0.497, 0.432, 0.841, 1.105, 1.281, 0.923], "forecast": [134, 118, 129, 97, 81, 64, 45, 39, 76, 99, 115, 83], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}, {"keyword": "pop art leinwand", "volume": 150, "idx": [0.0, 0.0, 6.217, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.783], "forecast": [0, 0, 933, 0, 0, 0, 0, 0, 0, 0, 0, 867], "peak": "M\u00e4r", "low": "Jan", "source": "Google Trends"}, {"keyword": "pop art kunstwerke", "volume": 150, "idx": [1.485, 1.316, 1.433, 1.083, 0.896, 0.708, 0.497, 0.432, 0.841, 1.105, 1.281, 0.923], "forecast": [223, 197, 215, 162, 134, 106, 75, 65, 126, 166, 192, 138], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}, {"keyword": "bilder pop art", "volume": 150, "idx": [1.29, 1.36, 1.413, 1.037, 0.884, 0.688, 0.582, 0.461, 0.83, 1.196, 1.321, 0.936], "forecast": [194, 204, 212, 156, 133, 103, 87, 69, 124, 179, 198, 140], "peak": "M\u00e4r", "low": "Aug", "source": "Google Trends"}, {"keyword": "modern pop art bilder", "volume": 150, "idx": [1.485, 1.316, 1.433, 1.083, 0.896, 0.708, 0.497, 0.432, 0.841, 1.105, 1.281, 0.923], "forecast": [223, 197, 215, 162, 134, 106, 75, 65, 126, 166, 192, 138], "peak": "Jan", "low": "Aug", "source": "Seiten-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/pop-art/", "label": "studierende/sujet/pop-art", "focus": [], "secondary": [{"keyword": "pop art bilder einfach", "volume": 200}, {"keyword": "pop art bilder comic", "volume": 200}, {"keyword": "bilder pop art", "volume": 150}, {"keyword": "modern pop art bilder", "volume": 150}, {"keyword": "mickey mouse bilder pop art", "volume": 150}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/portraet/", "label": "studierende/sujet/portraet", "focus": [], "secondary": [{"keyword": "gem\u00e4lde portrait", "volume": 100}, {"keyword": "gem\u00e4lde portrait frau", "volume": 80}, {"keyword": "portrait gem\u00e4lde frau", "volume": 70}, {"keyword": "gem\u00e4lde portrait frau modern", "volume": 60}, {"keyword": "portrait portrait gem\u00e4lde", "volume": 60}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/portrait-gemaelde/", "label": "studierende/sujet/portrait-gemaelde", "focus": [{"keyword": "portrait malerei", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "portrait kaufen", "volume": 30, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [37, 35, 33, 29, 26, 23, 22, 25, 30, 32, 35, 31], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "portrait gem\u00e4lde", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gem\u00e4lde portrait", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "gem\u00e4lde portrait frau", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "portrait gem\u00e4lde frau", "volume": 70, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [86, 83, 77, 69, 62, 54, 51, 59, 70, 75, 81, 73], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/religioese-kunst/", "label": "studierende/sujet/religioese-kunst", "focus": [{"keyword": "sakrale kunst", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "religi\u00f6se kunst", "volume": 60, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [74, 71, 66, 59, 53, 47, 44, 51, 60, 64, 70, 63], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "religi\u00f6se gem\u00e4lde", "volume": 60, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [74, 71, 66, 59, 53, 47, 44, 51, 60, 64, 70, 63], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "christliche kunst", "volume": 20, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [25, 24, 22, 20, 18, 16, 15, 17, 20, 22, 23, 21], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "sakrale bilder", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/stillleben/", "label": "studierende/sujet/stillleben", "focus": [{"keyword": "stillleben modern", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "modernes stillleben", "volume": 400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [494, 472, 439, 392, 352, 311, 294, 338, 397, 430, 464, 417], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "stillleben gem\u00e4lde", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "stillleben bilder", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "stillleben kunst", "volume": 4600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [5676, 5433, 5046, 4508, 4043, 3579, 3381, 3887, 4568, 4945, 5341, 4793], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "stillleben kunst modern", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst stillleben", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "stillleben moderne kunst", "volume": 40, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [49, 47, 44, 39, 35, 31, 29, 34, 40, 43, 46, 42], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/surrealismus/", "label": "studierende/sujet/surrealismus", "focus": [{"keyword": "surreale bilder", "volume": 450, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [555, 531, 494, 441, 396, 350, 331, 380, 447, 484, 522, 469], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "surreale malerei", "volume": 30, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [37, 35, 33, 29, 26, 23, 22, 25, 30, 32, 35, 31], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "surreale kunst", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "surrealismus bilder", "volume": 900, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1111, 1063, 987, 882, 791, 700, 662, 760, 894, 968, 1045, 938], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "bilder surrealismus", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "bilder surrealismus", "volume": 200}, {"keyword": "surrealismus einfache bilder", "volume": 150}, {"keyword": "salvador dali bilder surrealismus", "volume": 150}, {"keyword": "max ernst bilder surrealismus", "volume": 100}, {"keyword": "surrealismus magritte bilder", "volume": 50}]}, {"url": "https://studenten-kunstmarkt.de/studierende/sujet/zeitgenoessische-kunst/", "label": "studierende/sujet/zeitgenoessische-kunst", "focus": [{"keyword": "modern art", "volume": 2400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [2962, 2834, 2633, 2352, 2110, 1867, 1764, 2028, 2383, 2580, 2786, 2501], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "zeitgen\u00f6ssische kunst", "volume": 2700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [3332, 3189, 2962, 2646, 2373, 2101, 1984, 2282, 2681, 2902, 3135, 2813], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "zeitgen\u00f6ssische malerei", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "moderne kunst bilder", "volume": 800, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [987, 945, 878, 784, 703, 622, 588, 676, 794, 860, 929, 834], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunstwerke von zeitgen\u00f6ssische kunst", "volume": 40, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [49, 47, 44, 39, 35, 31, 29, 34, 40, 43, 46, 42], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "moderne k\u00fcnstler", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "galerie f\u00fcr zeitgen\u00f6ssische kunst", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "moderne kunst kaufen", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "zeitgen\u00f6ssische kunst kaufen", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "moderne kunst online kaufen", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/acryl/", "label": "studierende/technik/acryl", "focus": [], "secondary": [{"keyword": "acrylbilder abstrakt", "volume": 800}, {"keyword": "au\u00dfergew\u00f6hnliche acrylbilder abstrakt", "volume": 600}, {"keyword": "acrylbilder einfach", "volume": 350}, {"keyword": "acrylbilder kaufen", "volume": 300}, {"keyword": "acrylbilder meer und strand", "volume": 200}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/acrylgemaelde/", "label": "studierende/technik/acrylgemaelde", "focus": [{"keyword": "Acrylgem\u00e4lde", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acrylbilder", "volume": 3400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [4196, 4015, 3730, 3332, 2989, 2645, 2499, 2873, 3376, 3655, 3947, 3543], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acryl bilder", "volume": 2300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [2838, 2716, 2523, 2254, 2022, 1789, 1690, 1944, 2284, 2472, 2670, 2397], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acrylbild", "volume": 900, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1111, 1063, 987, 882, 791, 700, 662, 760, 894, 968, 1045, 938], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acrylbilder modern", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acrylbilder abstrakt", "volume": 800, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [987, 945, 878, 784, 703, 622, 588, 676, 794, 860, 929, 834], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "au\u00dfergew\u00f6hnliche acrylbilder abstrakt", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acrylbilder kaufen", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "acrylbilder meer und strand", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/aquarell/", "label": "studierende/technik/aquarell", "focus": [{"keyword": "Aquarelle", "volume": 1300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1604, 1535, 1426, 1274, 1143, 1011, 956, 1098, 1291, 1398, 1509, 1355], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "moderne aquarelle", "volume": 80, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [99, 94, 88, 78, 70, 62, 59, 68, 79, 86, 93, 83], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "aquarelle bilder modern", "volume": 400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [494, 472, 439, 392, 352, 311, 294, 338, 397, 430, 464, 417], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "echte aquarelle kaufen", "volume": 70, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [86, 83, 77, 69, 62, 54, 51, 59, 70, 75, 81, 73], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "aquarelle bilder", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "aquarellbilder abstrakt", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "aquarelle kaufen", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "aquarelle bilder", "volume": 250}, {"keyword": "william turner aquarelle", "volume": 200}, {"keyword": "moderne aquarelle aquarellbilder abstrakt", "volume": 200}, {"keyword": "aquarelle lips", "volume": 200}, {"keyword": "aquarelle kaufen", "volume": 150}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/assemblage/", "label": "studierende/technik/assemblage", "focus": [{"keyword": "assemblage kunst", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "assemblage kunst beispiel", "volume": 50}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/collage/", "label": "studierende/technik/collage", "focus": [{"keyword": "collage kunst", "volume": 1300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1604, 1535, 1426, 1274, 1143, 1011, 956, 1098, 1291, 1398, 1509, 1355], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "collagen kunst", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst collage", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "collage kunst beispiele", "volume": 200}, {"keyword": "collage erstellen kunst", "volume": 90}, {"keyword": "collage kunst themen", "volume": 40}, {"keyword": "was ist eine collage kunst", "volume": 40}, {"keyword": "kunst collage erstellen", "volume": 40}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/druckgrafik/", "label": "studierende/technik/druckgrafik", "focus": [], "secondary": [{"keyword": "kunstdruck poster", "volume": 300}, {"keyword": "poster kunstdruck", "volume": 300}, {"keyword": "kunstdruck auf leinwand", "volume": 250}, {"keyword": "kunstdruck leinwand", "volume": 250}, {"keyword": "frida kahlo kunstdruck", "volume": 200}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/fotografie/", "label": "studierende/technik/fotografie", "focus": [{"keyword": "kunstfotografie kaufen", "volume": 90, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [111, 106, 99, 88, 79, 70, 66, 76, 89, 97, 104, 94], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunstfotografie", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/fotografie/schwarz-weiss-fotografie/", "label": "studierende/technik/fotografie/schwarz-weiss-fotografie", "focus": [{"keyword": "schwarz wei\u00df fotografie", "volume": 900, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1111, 1063, 987, 882, 791, 700, 662, 760, 894, 968, 1045, 938], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "schwarz wei\u00df kunst", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "fotografie schwarz wei\u00df", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "schwarz wei\u00df fotografie poster", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "fotografie schwarz wei\u00df", "volume": 100}, {"keyword": "k\u00f6rper schwarz wei\u00df fotografie frau", "volume": 100}, {"keyword": "schwarz wei\u00df fotografie poster", "volume": 100}, {"keyword": "poster schwarz-wei\u00df fotografie", "volume": 90}, {"keyword": "poster schwarz wei\u00df fotografie", "volume": 90}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/kohle/", "label": "studierende/technik/kohle", "focus": [], "secondary": [{"keyword": "kohlezeichnungen einfach", "volume": 90}, {"keyword": "einfache kohlezeichnungen", "volume": 40}, {"keyword": "welches papier f\u00fcr kohlezeichnungen", "volume": 30}, {"keyword": "papier f\u00fcr kohlezeichnungen", "volume": 30}, {"keyword": "robert longo kohlezeichnungen", "volume": 30}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/kohlezeichnungen/", "label": "studierende/technik/kohlezeichnungen", "focus": [{"keyword": "kohlezeichnungen", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kohlezeichnung", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kohlezeichnungen abstrakt", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/kunstdruck/", "label": "studierende/technik/kunstdruck", "focus": [{"keyword": "kunstdrucke kaufen", "volume": 1300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1604, 1535, 1426, 1274, 1143, 1011, 956, 1098, 1291, 1398, 1509, 1355], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "grafik kunst", "volume": 450, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [555, 531, 494, 441, 396, 350, 331, 380, 447, 484, 522, 469], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "druckgrafik kaufen", "volume": 60, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [74, 71, 66, 59, 53, 47, 44, 51, 60, 64, 70, 63], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "druckgrafik", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunstdruck", "volume": 5900, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [7281, 6968, 6472, 5782, 5186, 4590, 4336, 4986, 5859, 6342, 6850, 6148], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunstdruck poster", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "poster kunstdruck", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunstdruck auf leinwand", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/oelgemaelde/", "label": "studierende/technik/oelgemaelde", "focus": [{"keyword": "\u00f6lgem\u00e4lde kaufen", "volume": 1100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1357, 1299, 1207, 1078, 967, 856, 808, 930, 1092, 1182, 1277, 1146], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lgem\u00e4lde", "volume": 3600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [4442, 4252, 3949, 3528, 3164, 2801, 2646, 3042, 3575, 3870, 4180, 3751], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lbilder kaufen", "volume": 400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [494, 472, 439, 392, 352, 311, 294, 338, 397, 430, 464, 417], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lgem\u00e4lde auf leinwand", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lbilder", "volume": 350, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [432, 413, 384, 343, 308, 272, 257, 296, 348, 376, 406, 365], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lgem\u00e4lde abstrakt", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lgem\u00e4lde auf leinwand handgemalt", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lgem\u00e4lde bilder", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "\u00f6lbild kaufen", "volume": 50, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [62, 59, 55, 49, 44, 39, 37, 42, 50, 54, 58, 52], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "\u00f6lgem\u00e4lde reinigen", "volume": 1000}, {"keyword": "\u00f6lgem\u00e4lde auf leinwand handgemalt", "volume": 200}, {"keyword": "\u00f6lgem\u00e4lde maler k\u00fcnstler namen", "volume": 200}, {"keyword": "\u00f6lgem\u00e4lde reinigen sp\u00fclmittel", "volume": 150}, {"keyword": "\u00f6lgem\u00e4lde bilder", "volume": 150}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/performance-kunst/", "label": "studierende/technik/performance-kunst", "focus": [{"keyword": "performance kunst", "volume": 600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [740, 709, 658, 588, 527, 467, 441, 507, 596, 645, 697, 625], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst performance", "volume": 60, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [74, 71, 66, 59, 53, 47, 44, 51, 60, 64, 70, 63], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "kunst performance", "volume": 60}, {"keyword": "performance kunst beispiele", "volume": 60}, {"keyword": "performance kunst abramovic", "volume": 40}, {"keyword": "was ist performance kunst", "volume": 30}, {"keyword": "performance kunst marina abramovic", "volume": 30}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/radierung/", "label": "studierende/technik/radierung", "focus": [{"keyword": "Radierung Kunst", "volume": 400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [494, 472, 439, 392, 352, 311, 294, 338, 397, 430, 464, 417], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "radierungen kaufen", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "Radierungen", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst radierung", "volume": 40, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [49, 47, 44, 39, 35, 31, 29, 34, 40, 43, 46, 42], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "kunst radierung", "volume": 40}, {"keyword": "was ist eine radierung kunst", "volume": 30}, {"keyword": "radierung kunst technik", "volume": 30}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/skulptur/", "label": "studierende/technik/skulptur", "focus": [{"keyword": "skulpturen", "volume": 2400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [2962, 2834, 2633, 2352, 2110, 1867, 1764, 2028, 2383, 2580, 2786, 2501], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "skulpturen kaufen", "volume": 250, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [308, 295, 274, 245, 220, 194, 184, 211, 248, 269, 290, 260], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "plastiken", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst skulptur", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "deko skulptur", "volume": 200, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [247, 236, 219, 196, 176, 156, 147, 169, 199, 215, 232, 208], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "kunst figuren", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "abstrakte skulptur", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "skulpturen f\u00fcr den garten", "volume": 400, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [494, 472, 439, 392, 352, 311, 294, 338, 397, 430, 464, 417], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "bernini skulpturen", "volume": 600}, {"keyword": "skulpturen f\u00fcr den garten", "volume": 400}, {"keyword": "arno breker skulpturen", "volume": 350}, {"keyword": "michelangelo skulpturen", "volume": 350}, {"keyword": "giacometti skulpturen", "volume": 300}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/skulptur/holz/", "label": "studierende/technik/skulptur/holz", "focus": [{"keyword": "holzskulpturen", "volume": 700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [864, 827, 768, 686, 615, 545, 514, 592, 695, 752, 813, 729], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "holzskulpturen garten", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "holzskulpturen f\u00fcr den garten", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "holzskulpturen wohnzimmer", "volume": 150, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [185, 177, 165, 147, 132, 117, 110, 127, 149, 161, 174, 156], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "holzskulpturen f\u00fcr den garten kaufen", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "holzskulpturen aus baumstamm", "volume": 200}, {"keyword": "holzskulpturen garten", "volume": 150}, {"keyword": "holzskulpturen f\u00fcr den garten", "volume": 150}, {"keyword": "holzskulpturen wohnzimmer", "volume": 150}, {"keyword": "holzskulpturen f\u00fcr den garten kaufen", "volume": 100}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/streetart/", "label": "studierende/technik/streetart", "focus": [{"keyword": "street art", "volume": 3600, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [4442, 4252, 3949, 3528, 3164, 2801, 2646, 3042, 3575, 3870, 4180, 3751], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "street art kunst", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "street art kaufen", "volume": 70, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [86, 83, 77, 69, 62, 54, 51, 59, 70, 75, 81, 73], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "graffiti kunstwerke", "volume": 60, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [74, 71, 66, 59, 53, 47, 44, 51, 60, 64, 70, 63], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "graffiti bilder", "volume": 2900, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [3579, 3425, 3181, 2842, 2549, 2256, 2132, 2450, 2880, 3118, 3367, 3022], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "Graffiti Art", "volume": 1100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [1357, 1299, 1207, 1078, 967, 856, 808, 930, 1092, 1182, 1277, 1146], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "Graffiti Kunst", "volume": 450, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [555, 531, 494, 441, 396, 350, 331, 380, 447, 484, 522, 469], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "street art bilder kaufen", "volume": 30, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [37, 35, 33, 29, 26, 23, 22, 25, 30, 32, 35, 31], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "street art gem\u00e4lde", "volume": 40, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [49, 47, 44, 39, 35, 31, 29, 34, 40, 43, 46, 42], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "street art graffiti", "volume": 300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [370, 354, 329, 294, 264, 233, 220, 254, 298, 322, 348, 313], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "street art berlin", "volume": 500}, {"keyword": "street art k\u00fcnstler", "volume": 450}, {"keyword": "banksy street art", "volume": 350}, {"keyword": "street art museum amsterdam", "volume": 300}, {"keyword": "street art graffiti", "volume": 300}]}, {"url": "https://studenten-kunstmarkt.de/studierende/technik/zeichnung/bleistift-auf-papier/", "label": "studierende/technik/zeichnung/bleistift-auf-papier", "focus": [{"keyword": "bleistiftzeichnungen kaufen", "volume": 100, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [123, 118, 110, 98, 88, 78, 74, 84, 99, 108, 116, 104], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "bleistiftzeichnungen", "volume": 1700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [2098, 2008, 1865, 1666, 1494, 1323, 1250, 1436, 1688, 1828, 1974, 1771], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "zeichnungen bleistift", "volume": 3300, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [4072, 3897, 3620, 3234, 2901, 2567, 2426, 2788, 3277, 3548, 3831, 3439], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}, {"keyword": "bleistift zeichnungen", "volume": 2700, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [3332, 3189, 2962, 2646, 2373, 2101, 1984, 2282, 2681, 2902, 3135, 2813], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": [{"keyword": "s\u00fc\u00dfe zeichnungen mit bleistift leicht", "volume": 2000}, {"keyword": "bleistift anf\u00e4nger einfache zeichnungen", "volume": 900}, {"keyword": "zeichnungen bleistift leicht", "volume": 700}, {"keyword": "bleistift einfache zeichnungen", "volume": 600}, {"keyword": "zeichnungen bleistift einfach", "volume": 500}]}, {"url": "https://studenten-kunstmarkt.de/unternehmen/kunstberatung/", "label": "unternehmen/kunstberatung", "focus": [{"keyword": "Kunstberatung", "volume": 20, "idx": [1.234, 1.181, 1.097, 0.98, 0.879, 0.778, 0.735, 0.845, 0.993, 1.075, 1.161, 1.042], "forecast": [25, 24, 22, 20, 18, 16, 15, 17, 20, 22, 23, 21], "peak": "Jan", "low": "Jul", "source": "Global-\u00d8"}], "secondary": []}];
+const HIST = {"months": ["Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"], "years": {"2023": {"idx": [1.14, 1.105, 1.042, 0.947, 0.912, 0.859, 0.882, 1.073, 0.982, 1.024, 1.088, 0.945], "abs_vol": [152392, 147713, 139291, 126592, 121913, 114829, 117903, 143435, 131271, 136885, 145441, 126325], "annual_avg": 56.1}, "2024": {"idx": [1.274, 1.109, 0.949, 1.124, 0.894, 0.805, 0.768, 0.962, 1.098, 0.974, 1.056, 0.987], "abs_vol": [170304, 148248, 126859, 150253, 119507, 107610, 102664, 128597, 146777, 130201, 141163, 131939], "annual_avg": 50.7}, "2025": {"idx": [1.109, 1.081, 1.169, 0.888, 0.942, 0.935, 0.943, 0.871, 0.784, 1.083, 1.187, 1.007], "abs_vol": [148248, 144505, 156268, 118705, 125924, 124988, 126057, 116433, 104803, 144772, 158675, 134613], "annual_avg": 52.0}}, "forecast_2026": {"abs_vol": [166994, 160929, 148775, 127642, 114606, 101350, 95142, 112100, 136243, 146526, 156052, 137770], "idx": [1.256, 1.231, 1.128, 0.979, 0.823, 0.726, 0.66, 0.811, 1.029, 1.124, 1.181, 1.052]}, "ahrefs_annual_avg": 133677};
 const MONTHS = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
 
 // ─── TAB NAVIGATION ───────────────────────────────────────────
-function showTab(name) {
+function showTab(name, btn) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  btn.classList.add('active');
   if (name === 'keywords' && !window._kwInit) { initKeywords(); window._kwInit = true; }
+  if (name === 'history' && !window._histInit) { initHistCharts(); window._histInit = true; }
 }
 
 // ─── CHART 1: ABSOLUT ─────────────────────────────────────────
-const ctx1 = document.getElementById('chartAbsolut').getContext('2d');
-new Chart(ctx1, {
+new Chart(document.getElementById('chartAbsolut'), {
   type: 'line',
   data: {
     labels: CHART_DATA.months,
     datasets: [
-      {
-        label: 'Suchvolumen 2026',
-        data: CHART_DATA.monthly_total,
-        borderColor: '#2563eb',
-        backgroundColor: 'rgba(37,99,235,0.08)',
-        borderWidth: 2.5,
-        pointRadius: 5,
-        pointBackgroundColor: '#2563eb',
-        tension: 0.3,
-        fill: true
-      },
-      {
-        label: 'Jahres-Ø (133.510)',
-        data: new Array(12).fill(CHART_DATA.annual_avg),
-        borderColor: '#94a3b8',
-        borderWidth: 1.5,
-        borderDash: [6,4],
-        pointRadius: 0,
-        fill: false
-      }
+      { label: 'Prognose 2026', data: CHART_DATA.monthly_total, borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.08)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#2563eb', tension: 0.3, fill: true },
+      { label: 'Jahres-Ø (133.510)', data: new Array(12).fill(CHART_DATA.annual_avg), borderColor: '#94a3b8', borderWidth: 1.5, borderDash: [6,4], pointRadius: 0, fill: false }
     ]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'top', labels: { font: { size: 12 } } },
-      tooltip: {
-        callbacks: {
-          label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.raw.toLocaleString('de-DE') + ' Suchanfragen'
-        }
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: false,
-        ticks: { callback: v => (v/1000).toFixed(0) + 'k', font: { size: 11 } },
-        grid: { color: '#f1f5f9' }
-      },
-      x: { ticks: { font: { size: 11 } }, grid: { display: false } }
-    }
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.raw.toLocaleString('de-DE') + ' Suchanfragen' } } },
+    scales: { y: { beginAtZero: false, ticks: { callback: v => (v/1000).toFixed(0)+'k' }, grid: { color:'#f1f5f9' } }, x: { grid: { display:false } } }
   }
 });
 
-// ─── CHART 2: INDEX % ─────────────────────────────────────────
-const ctx2 = document.getElementById('chartIndex').getContext('2d');
-new Chart(ctx2, {
+// ─── CHART 2: INDEX ───────────────────────────────────────────
+new Chart(document.getElementById('chartIndex'), {
   type: 'bar',
   data: {
     labels: CHART_DATA.months,
-    datasets: [{
-      label: '% vs. Jahres-Ø',
-      data: CHART_DATA.pct_vs_avg,
+    datasets: [{ label: '% vs. Jahres-Ø', data: CHART_DATA.pct_vs_avg,
       backgroundColor: CHART_DATA.pct_vs_avg.map(v => v >= 0 ? 'rgba(22,163,74,0.75)' : 'rgba(220,38,38,0.75)'),
-      borderRadius: 6,
-      borderSkipped: false
-    }]
+      borderRadius: 6, borderSkipped: false }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => ' ' + (ctx.raw > 0 ? '+' : '') + ctx.raw.toFixed(1) + '% vs. Jahres-Ø'
-        }
-      }
-    },
-    scales: {
-      y: {
-        ticks: { callback: v => (v > 0 ? '+' : '') + v + '%', font: { size: 11 } },
-        grid: { color: '#f1f5f9' }
-      },
-      x: { ticks: { font: { size: 11 } }, grid: { display: false } }
-    }
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ' + (c.raw>0?'+':'') + c.raw.toFixed(1) + '% vs. Jahres-Ø' } } },
+    scales: { y: { ticks: { callback: v => (v>0?'+':'')+v+'%' }, grid: { color:'#f1f5f9' } }, x: { grid: { display:false } } }
   }
 });
 
 // ─── CHART 3: KATEGORIEN ──────────────────────────────────────
-const colors = ['#2563eb','#16a34a','#d97706','#7c3aed'];
-const ctx3 = document.getElementById('chartKategorien').getContext('2d');
-const catDatasets = Object.entries(CHART_DATA.categories).map(([name, vals], i) => ({
-  label: name,
-  data: vals,
-  borderColor: colors[i],
-  backgroundColor: colors[i] + '15',
-  borderWidth: 2,
-  pointRadius: 4,
-  tension: 0.3,
-  fill: false
+const catColors = ['#2563eb','#16a34a','#d97706','#7c3aed'];
+const catDs = Object.entries(CHART_DATA.categories).map(([name, vals], i) => ({
+  label: name, data: vals, borderColor: catColors[i], backgroundColor: catColors[i]+'15',
+  borderWidth: 2, pointRadius: 4, tension: 0.3, fill: false
 }));
-catDatasets.push({
-  label: 'Referenzlinie (1.0)',
-  data: new Array(12).fill(1),
-  borderColor: '#cbd5e1',
-  borderWidth: 1,
-  borderDash: [5,4],
-  pointRadius: 0,
-  fill: false
-});
-new Chart(ctx3, {
-  type: 'line',
-  data: { labels: CHART_DATA.months, datasets: catDatasets },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'top', labels: { font: { size: 11 }, boxWidth: 12 } },
-      tooltip: {
-        callbacks: {
-          label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.raw.toFixed(2)
-        }
-      }
-    },
-    scales: {
-      y: {
-        ticks: { callback: v => v.toFixed(1), font: { size: 11 } },
-        grid: { color: '#f1f5f9' }
-      },
-      x: { ticks: { font: { size: 11 } }, grid: { display: false } }
-    }
+catDs.push({ label: 'Referenz (1.0)', data: new Array(12).fill(1), borderColor: '#cbd5e1', borderWidth: 1, borderDash: [5,4], pointRadius: 0, fill: false });
+new Chart(document.getElementById('chartKategorien'), {
+  type: 'line', data: { labels: CHART_DATA.months, datasets: catDs },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { boxWidth: 12 } }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.raw.toFixed(2) } } },
+    scales: { y: { ticks: { callback: v => v.toFixed(1) }, grid: { color:'#f1f5f9' } }, x: { grid: { display:false } } }
   }
 });
+
+// ─── HISTORY CHARTS ───────────────────────────────────────────
+function initHistCharts() {
+  const yearColors = { '2023':'#94a3b8', '2024':'#f59e0b', '2025':'#16a34a', '2026':'#2563eb' };
+  const yearDash  = { '2023':[4,3], '2024':[4,3], '2025':[4,3], '2026':[] };
+
+  // Chart: Historical absolute volumes
+  const absDs = ['2023','2024','2025'].map(y => ({
+    label: y, data: HIST.years[y].abs_vol,
+    borderColor: yearColors[y], borderWidth: 1.8, borderDash: yearDash[y],
+    pointRadius: 3, tension: 0.3, fill: false
+  }));
+  absDs.push({
+    label: 'Prognose 2026', data: HIST.forecast_2026.abs_vol,
+    borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.07)',
+    borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true
+  });
+  new Chart(document.getElementById('chartHistAbs'), {
+    type: 'line', data: { labels: MONTHS, datasets: absDs },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 14 } },
+        tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.raw.toLocaleString('de-DE') } } },
+      scales: { y: { ticks: { callback: v => (v/1000).toFixed(0)+'k' }, grid: { color:'#f1f5f9' } }, x: { grid: { display:false } } }
+    }
+  });
+
+  // Chart: Historical index
+  const idxDs = ['2023','2024','2025'].map(y => ({
+    label: y, data: HIST.years[y].idx,
+    borderColor: yearColors[y], borderWidth: 1.8, borderDash: yearDash[y],
+    pointRadius: 3, tension: 0.3, fill: false
+  }));
+  idxDs.push({
+    label: 'Prognose 2026', data: HIST.forecast_2026.idx,
+    borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.07)',
+    borderWidth: 2.5, pointRadius: 5, tension: 0.3, fill: true
+  });
+  idxDs.push({ label: 'Referenz (1.0)', data: new Array(12).fill(1), borderColor: '#e2e8f0', borderWidth: 1, borderDash: [5,3], pointRadius: 0, fill: false });
+  new Chart(document.getElementById('chartHistIdx'), {
+    type: 'line', data: { labels: MONTHS, datasets: idxDs },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 14 } },
+        tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.raw.toFixed(3) } } },
+      scales: { y: { ticks: { callback: v => v.toFixed(1) }, grid: { color:'#f1f5f9' } }, x: { grid: { display:false } } }
+    }
+  });
+
+  // Chart: Quarterly comparison
+  function quarterAvg(volArr) {
+    return [
+      Math.round((volArr[0]+volArr[1]+volArr[2])/3),
+      Math.round((volArr[3]+volArr[4]+volArr[5])/3),
+      Math.round((volArr[6]+volArr[7]+volArr[8])/3),
+      Math.round((volArr[9]+volArr[10]+volArr[11])/3)
+    ];
+  }
+  const qLabels = ['Q1 (Jan–Mär)','Q2 (Apr–Jun)','Q3 (Jul–Sep)','Q4 (Okt–Dez)'];
+  const qDs = ['2023','2024','2025'].map(y => ({
+    label: y, data: quarterAvg(HIST.years[y].abs_vol),
+    backgroundColor: yearColors[y] + 'aa', borderColor: yearColors[y], borderWidth: 1.5,
+    borderRadius: 6, borderSkipped: false
+  }));
+  qDs.push({
+    label: 'Prognose 2026', data: quarterAvg(HIST.forecast_2026.abs_vol),
+    backgroundColor: 'rgba(37,99,235,0.75)', borderColor: '#2563eb', borderWidth: 1.5,
+    borderRadius: 6, borderSkipped: false
+  });
+  new Chart(document.getElementById('chartQuartal'), {
+    type: 'bar', data: { labels: qLabels, datasets: qDs },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 14 } },
+        tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.raw.toLocaleString('de-DE') } } },
+      scales: { y: { ticks: { callback: v => (v/1000).toFixed(0)+'k' }, grid: { color:'#f1f5f9' } }, x: { grid: { display:false } } }
+    }
+  });
+}
 
 // ─── KEYWORDS ─────────────────────────────────────────────────
 function initKeywords() {
   const sel = document.getElementById('urlFilter');
   PAGES.forEach(p => {
     const opt = document.createElement('option');
-    opt.value = p.url;
-    opt.textContent = p.label || p.url;
+    opt.value = p.url; opt.textContent = p.label || p.url;
     sel.appendChild(opt);
   });
   renderKeywords();
@@ -355,112 +348,74 @@ function renderKeywords() {
   const search = document.getElementById('kwSearch').value.toLowerCase();
   const filter = document.getElementById('kwFilter').value;
   const urlF = document.getElementById('urlFilter').value;
-  
-  let totalKws = 0;
   let html = '';
-  
   PAGES.forEach(page => {
     if (urlF && page.url !== urlF) return;
-    
     let rows = [];
-    if (filter !== 'secondary') {
-      page.focus.forEach(k => {
-        if (!search || k.keyword.includes(search)) rows.push({...k, type: 'focus'});
-      });
-    }
-    if (filter !== 'focus') {
-      page.secondary.forEach(k => {
-        if (!search || k.keyword.includes(search)) rows.push({...k, type: 'secondary', peak: '-', low: '-'});
-      });
-    }
+    if (filter !== 'secondary') page.focus.forEach(k => { if (!search || k.keyword.includes(search)) rows.push({...k, type:'focus'}); });
+    if (filter !== 'focus') page.secondary.forEach(k => { if (!search || k.keyword.includes(search)) rows.push({...k, type:'secondary', peak:'-', low:'-'}); });
     if (!rows.length) return;
-    totalKws += rows.length;
-    
     const focusCount = rows.filter(r=>r.type==='focus').length;
     const secCount = rows.filter(r=>r.type==='secondary').length;
-    
     let tableRows = rows.map(r => {
       const vol = r.volume || r.vol_ahrefs || 0;
-      const barW = Math.min(60, Math.round((vol / 5000) * 60));
-      let monthCells = '';
-      if (r.idx) {
-        monthCells = '<div class="months-mini">' + r.idx.map((v,i) => {
-          const bg = idxColor(v);
-          return `<div class="month-cell" style="background:${bg}" title="${MONTHS[i]}: ${v.toFixed(2)}">·</div>`;
-        }).join('') + '</div>';
-      } else {
-        monthCells = '<span style="color:var(--muted)">–</span>';
-      }
-      return `
-        <tr>
-          <td><span class="tag ${r.type==='focus'?'tag-focus':'tag-secondary'}">${r.type==='focus'?'Fokus':'Secondary'}</span></td>
-          <td style="font-weight:500">${r.keyword}</td>
-          <td><span class="vol-bar" style="width:${barW}px"></span>${vol.toLocaleString('de-DE')}</td>
-          <td>${r.peak && r.peak!=='-' ? `<span class="peak-badge">${r.peak}</span>` : '<span style="color:var(--muted)">–</span>'}</td>
-          <td>${r.low && r.low!=='-' ? `<span class="low-badge">${r.low}</span>` : '<span style="color:var(--muted)">–</span>'}</td>
-          <td>${monthCells}</td>
-        </tr>`;
+      const barW = Math.min(60, Math.round((vol/5000)*60));
+      let monthCells = r.idx
+        ? '<div class="months-mini">' + r.idx.map((v,i) => `<div class="month-cell" style="background:${idxColor(v)}" title="${MONTHS[i]}: ${v.toFixed(2)}">·</div>`).join('') + '</div>'
+        : '<span style="color:var(--muted)">–</span>';
+      return `<tr>
+        <td><span class="tag ${r.type==='focus'?'tag-focus':'tag-secondary'}">${r.type==='focus'?'Fokus':'Secondary'}</span></td>
+        <td style="font-weight:500">${r.keyword}</td>
+        <td><span class="vol-bar" style="width:${barW}px"></span>${vol.toLocaleString('de-DE')}</td>
+        <td>${r.peak&&r.peak!=='-'?`<span class="peak-badge">${r.peak}</span>`:'<span style="color:var(--muted)">–</span>'}</td>
+        <td>${r.low&&r.low!=='-'?`<span class="low-badge">${r.low}</span>`:'<span style="color:var(--muted)">–</span>'}</td>
+        <td>${monthCells}</td>
+      </tr>`;
     }).join('');
-    
-    html += `
-      <div class="page-card open">
-        <div class="page-header" onclick="togglePage(this)">
-          <div class="page-url">🔗 ${page.url}</div>
-          <span class="page-count">${focusCount} Fokus · ${secCount} Secondary</span>
-          <span class="page-chevron">▼</span>
-        </div>
-        <div class="page-body">
-          <table class="kw-table">
-            <thead><tr>
-              <th>Typ</th><th>Keyword</th><th>Volumen/Mo</th><th>Peak</th><th>Tief</th><th>Saisonalität (Jan–Dez)</th>
-            </tr></thead>
-            <tbody>${tableRows}</tbody>
-          </table>
-        </div>
-      </div>`;
+    html += `<div class="page-card open">
+      <div class="page-header" onclick="this.closest('.page-card').classList.toggle('open')">
+        <div class="page-url">🔗 ${page.url}</div>
+        <span class="page-count">${focusCount} Fokus · ${secCount} Secondary</span>
+        <span class="page-chevron">▼</span>
+      </div>
+      <div class="page-body">
+        <table class="kw-table">
+          <thead><tr><th>Typ</th><th>Keyword</th><th>Volumen/Mo</th><th>Peak</th><th>Tief</th><th>Saisonalität (Jan–Dez)</th></tr></thead>
+          <tbody>${tableRows}</tbody>
+        </table>
+      </div>
+    </div>`;
   });
-  
   document.getElementById('kwContainer').innerHTML = html || '<div style="padding:40px;text-align:center;color:var(--muted)">Keine Keywords gefunden.</div>';
 }
 
-function togglePage(el) {
-  el.closest('.page-card').classList.toggle('open');
-}
-
-// ─── CSV EXPORT ───────────────────────────────────────────────
 function exportCSV() {
   const rows = [['URL','Typ','Keyword','Volumen/Mo','Peak-Monat','Tief-Monat']];
-  PAGES.forEach(page => {
-    page.focus.forEach(k => rows.push([page.url,'Fokus',k.keyword,k.volume||k.vol_ahrefs||0,k.peak||'',k.low||'']));
-    page.secondary.forEach(k => rows.push([page.url,'Secondary',k.keyword,k.volume||0,'','']));
+  PAGES.forEach(p => {
+    p.focus.forEach(k => rows.push([p.url,'Fokus',k.keyword,k.volume||k.vol_ahrefs||0,k.peak||'',k.low||'']));
+    p.secondary.forEach(k => rows.push([p.url,'Secondary',k.keyword,k.volume||0,'','']));
   });
-  downloadCSV(rows, 'SKM_Keywords_Export.csv');
+  downloadCSV(rows,'SKM_Keywords_Export.csv');
 }
 
 function exportForecastCSV() {
   const header = ['URL','Keyword','Volumen/Mo (Basis)','Peak','Tief','Datenquelle',...MONTHS.map(m=>'Prognose '+m),...MONTHS.map(m=>'Index '+m)];
   const rows = [header];
-  PAGES.forEach(page => {
-    page.focus.forEach(k => {
-      const vol = k.volume || k.vol_ahrefs || 0;
-      const forecast = k.forecast || new Array(12).fill('');
-      const idx = k.idx || new Array(12).fill('');
-      rows.push([page.url, k.keyword, vol, k.peak||'', k.low||'', k.source||'', ...forecast, ...idx.map(v=>v?v.toFixed(3):'')]);
+  PAGES.forEach(p => {
+    p.focus.forEach(k => {
+      const vol = k.volume||k.vol_ahrefs||0;
+      rows.push([p.url,k.keyword,vol,k.peak||'',k.low||'',k.source||'',...(k.forecast||new Array(12).fill('')),...(k.idx||new Array(12).fill('')).map(v=>v?v.toFixed(3):'')]);
     });
   });
-  downloadCSV(rows, 'SKM_Prognose_2026_Export.csv');
+  downloadCSV(rows,'SKM_Prognose_2026_Export.csv');
 }
 
 function downloadCSV(rows, filename) {
-  const bom = '﻿';
-  const csv = bom + rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(';')).join('\n');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.click();
-  URL.revokeObjectURL(url);
+  const bom = '\uFEFF';
+  const csv = bom + rows.map(r => r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(';')).join('\n');
+  const a = Object.assign(document.createElement('a'), {href: URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'})), download: filename});
+  a.click();
 }
 </script>
-
 </body>
 </html>
